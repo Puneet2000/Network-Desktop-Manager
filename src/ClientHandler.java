@@ -34,27 +34,8 @@ public class ClientHandler extends Thread {
             ex.printStackTrace();
         }
         
-        while(c) {
-        	System.out.println("Receiving image");
-        	try {
-				ImageIcon imageIcon = (ImageIcon)ois.readObject();
-				System.out.println("Image Received");
-				Image image = imageIcon.getImage();
-				image = image.getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_FAST);
-                Graphics graphics = panel.getGraphics();
-                graphics.drawImage(image, 0, 0, panel.getWidth(),panel.getHeight(),panel);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Image not Received");
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Image not Received");
-				e.printStackTrace();
-			}
-        	
-        	
-        }
+        new ScreenReceiver(ois,panel);
+        new CommandSender(client,panel,clientScreenDim);
 	}
 	
 	public void drawGUI() {
