@@ -19,9 +19,7 @@ public class ScreenRecorder extends Thread {
 	  ObjectOutputStream oos=null;
 	  try {
 		oos = new ObjectOutputStream(client.getOutputStream());
-		System.out.println("Sending Screem Dimension");
 		oos.writeObject(rec);
-		System.out.println("Screen Dimension Sent");
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -33,10 +31,8 @@ public class ScreenRecorder extends Thread {
           ImageIcon imageIcon = new ImageIcon(image);
 
           try {
-              System.out.println("Trying to send image");
               oos.writeObject(imageIcon);
               oos.reset(); 
-              System.out.println("New screenshot sent");
           } catch (IOException ex) {
         	  Continue = false;
              ex.printStackTrace();

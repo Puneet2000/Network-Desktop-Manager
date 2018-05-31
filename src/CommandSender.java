@@ -47,27 +47,55 @@ public class CommandSender extends Thread implements KeyListener,MouseListener,M
     }
 
     public void mousePressed(MouseEvent e) {
-        System.out.println("Mouse Pressed");
+    	if (e.getButton() == MouseEvent.BUTTON1) {
+        System.out.println("Mouse left Pressed : " + Integer.toString(e.getButton()));
         writer.println(EnumCommands.PRESS_MOUSE.getAbbrev());
         int button = e.getButton();
-        int xButton = 16;
-        if (button == 3) {
-            xButton = 4;
-        }
-        writer.println(xButton);
+        writer.println(button);
         writer.flush();
+    	}
+    	
+    	if (e.getButton() == MouseEvent.BUTTON2) {
+            System.out.println("Mouse MiddlePressed : " + Integer.toString(e.getButton()));
+            writer.println(EnumCommands.PRESS_MOUSE.getAbbrev());
+            int button = e.getButton();
+            writer.println(button);
+            writer.flush();
+        	} 
+    	
+    	if (e.getButton() == MouseEvent.BUTTON3) {
+            System.out.println("Mouse Right Pressed : " + Integer.toString(e.getButton()));
+            writer.println(EnumCommands.PRESS_MOUSE.getAbbrev());
+            int button = e.getButton();
+            writer.println(button);
+            writer.flush();
+        	}
     }
 
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Mouse Released");
-        writer.println(EnumCommands.RELEASE_MOUSE.getAbbrev());
-        int button = e.getButton();
-        int xButton = 16;
-        if (button == 3) {
-            xButton = 4;
-        }
-        writer.println(xButton);
-        writer.flush();
+    	if (e.getButton() == MouseEvent.BUTTON1) {
+            System.out.println("Mouse left Released : " + Integer.toString(e.getButton()));
+            writer.println(EnumCommands.RELEASE_MOUSE.getAbbrev());
+            int button = e.getButton();
+            writer.println(button);
+            writer.flush();
+        	}
+        	
+        	if (e.getButton() == MouseEvent.BUTTON2) {
+                System.out.println("Mouse Middle Relesed : " + Integer.toString(e.getButton()));
+                writer.println(EnumCommands.RELEASE_MOUSE.getAbbrev());
+                int button = e.getButton();
+                writer.println(button);
+                writer.flush();
+            	} 
+        	
+        	if (e.getButton() == MouseEvent.BUTTON3) {
+                System.out.println("Mouse Right Released : " + Integer.toString(e.getButton()));
+                writer.println(EnumCommands.RELEASE_MOUSE.getAbbrev());
+                int button = e.getButton();
+                writer.println(button);
+                writer.flush();
+            	}
     }
 
     //not implemented

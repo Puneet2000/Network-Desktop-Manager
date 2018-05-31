@@ -26,6 +26,7 @@ public class Client {
 				robot = new Robot(gDev);
 				 drawGUI();
 				 new ScreenRecorder(client,robot,rec);
+				 new CommandReceiver(client,robot);
 			} catch (AWTException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
