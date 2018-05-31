@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.*;
 import java.beans.PropertyVetoException;
 import java.io.*;
 import java.net.*;

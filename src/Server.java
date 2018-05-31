@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.*;
 import java.io.*;
 import java.net.*;
 public class Server {
 	private JFrame jFrame=null;
 	private JDesktopPane desktop=null;
+	ServerSocket sc=null;
 	 public static void main(String args[]){
 	        String port = JOptionPane.showInputDialog("Please enter listening port");
 	        new Server().initialize(Integer.parseInt(port));
@@ -14,7 +14,7 @@ public class Server {
 	    public void initialize(int port){
 
 	        try {
-	            ServerSocket sc = new ServerSocket(port);
+	            sc = new ServerSocket(port);
 	            drawGUI();
 	            while(true){
 	                Socket client = sc.accept();
