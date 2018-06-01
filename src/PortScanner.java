@@ -40,7 +40,8 @@ public class PortScanner {
 		
 	}
 	public void UdpScan(String ip) {
-		for (int i=0;i<=10;i++) {
+		int open =0;
+		for (int i=1;i<=10;i++) {
 			DatagramSocket ds;
 	        DatagramPacket dp;
 	        DatagramChannel dChannel;
@@ -70,19 +71,20 @@ public class PortScanner {
 	            ds.close();
 	        }
 	        catch(PortUnreachableException e){
-	        	  System.out.println( "port " + Integer.toString(i)+" is closed");
+	        	 
 	        }
 	        catch(InterruptedIOException e){
-	        	 System.out.println( "port " + Integer.toString(i)+" is closed");
+	        	 
 	        }
 	        catch(IOException e){
-	        	 System.out.println( "port " + Integer.toString(i)+" is closed");
+	        	
 	        }
 	        catch(Exception e){
-	        	 System.out.println( "port " + Integer.toString(i)+" is closed");
+	        	
 	        }
-	       
+	       open++;
 		}
+		System.out.println("Open ports : "+Integer.toString(open));
 	}
 	public void drawGUI() {
 		JFrame jf = new JFrame("Port Scanner");
