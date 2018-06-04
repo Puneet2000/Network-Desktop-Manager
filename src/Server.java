@@ -3,12 +3,13 @@ import java.awt.*;
 import java.io.*;
 import java.net.*;
 public class Server {
-	private JFrame jFrame=null;
+	private JFrame jFrame=null,jf=null;
 	private JDesktopPane desktop=null;
 	ServerSocket sc=null;
 	 public static void main(String args[]){
 	        String port = JOptionPane.showInputDialog("Please enter listening port");
-	        new Server().initialize(Integer.parseInt(port));
+	        new Server().ServerMainFrame();
+	        //new Server().initialize(Integer.parseInt(port));
 	    }
 
 	    public void initialize(int port){
@@ -33,6 +34,20 @@ public class Server {
 	    	jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	jFrame.setExtendedState(jFrame.getExtendedState()| JFrame.MAXIMIZED_BOTH);
 	    	jFrame.setVisible(true);
+	    	
+	    }
+	    public void ServerMainFrame() {
+	    	jf = new JFrame("This is Server Window");
+	    	jf.setSize(1000,1000);
+	    	JTabbedPane jtp = new JTabbedPane();
+	    	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    	jtp.addTab("Control Desktop", null);
+	    	jtp.addTab("Port Scanner",null);
+	    	jtp.addTab("System Properties",null);
+	    	jtp.addTab("Running Process", null);
+	    	jtp.add("Desktop Locking", null);
+	    	jf.add(jtp);
+	    	jf.setVisible(true);
 	    	
 	    }
 
