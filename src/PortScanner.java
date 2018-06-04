@@ -110,11 +110,7 @@ public class PortScanner {
 	            dp = new DatagramPacket(bytes, bytes.length);
 	            Thread.sleep(1000);
 	            ds.receive(dp);
-
-	            if (!dChannel.isConnected() || !dChannel.isOpen()){
-	                ds.close();
-	                continue;
-	            }
+	            System.out.println(ds);
 	            response = dp.toString();
 	            ds.disconnect();
 	            dChannel.disconnect();
