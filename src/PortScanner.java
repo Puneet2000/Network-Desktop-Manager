@@ -1,19 +1,17 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import java.net.*;
 import java.nio.channels.DatagramChannel;
 
-import javax.swing.*;
+import javax.swing.JTextArea;
+
 import java.io.*;
 public class PortScanner {
 
-	public static void main (String args[]) {
-		new PortScanner().drawGUI();
-	}
-	public void TcpConnect(String ip)  {
-		int open =0;
+	public void TcpConnect(String ip,int port,JTextArea jtxt)  {
+		int open =1;
+		String s="";
 		for (int i=1;i<=65535;i++) {
+			if (i!=port) {
 			String data="";
 			Socket socket = new Socket();
 			
@@ -48,7 +46,7 @@ public class PortScanner {
                 	
                 } finally {
                 	open++;
-         	       System.out.println("Port "+Integer.toString(i)+" is open");
+         	      jtxt.append( "\n"+("Port "+Integer.toString(i)+" is open"));
          	       System.out.println(data);
                     try {
                         socket.close();
@@ -57,10 +55,14 @@ public class PortScanner {
                     }
     }
 	    }
-		System.out.println("Ports open " + Integer.toString(open));
+	    	
+		
+		}
+		jtxt.append( "\n"+("Port "+Integer.toString(port)+" is open"));
+		jtxt.append("\n"+("Ports open " + Integer.toString(open)));
 		}
 	
-	public void TcpSYN(String ip) {
+	public void TcpSYN(String ip,int port,JTextArea jtxt) {
 		
 	}
 	private String parseSSH(BufferedReader reader) throws IOException {
@@ -92,9 +94,11 @@ public class PortScanner {
 
         return null;
 }
-	public void UdpScan(String ip) {
-		int open =0;
+	public void UdpScan(String ip,int port,JTextArea jtxt) {
+		int open =1;
+		String s="";
 		for (int i=1;i<=10;i++) {
+			if(i!=port) {
 			String response="";
 	        try{
 	        	String m ="Hello";
@@ -130,48 +134,12 @@ public class PortScanner {
 	        	continue;
 	        }
 	       open++;
+	       jtxt.append( "\n"+("Port "+Integer.toString(i)+" is open"));
 	       System.out.println(response);
 		}
-		System.out.println("Open ports : "+Integer.toString(open));
+		
 	}
-	public void drawGUI() {
-		JFrame jf = new JFrame("Port Scanner");
-		jf.setSize(200,150);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel jp = new JPanel();
-		JButton tcpSyn = new JButton("TCP SYN Scan");
-		tcpSyn.addActionListener(new ActionListener() { 
-			  public void actionPerformed(ActionEvent e) { 
-				  String ip = JOptionPane.showInputDialog("Enter IP address");
-				  TcpSYN(ip);
-			   
-			  } 
-			  
-			} );
-		JButton tcpConnect = new JButton("TCP CONNECT Scan");
-		tcpConnect.addActionListener(new ActionListener() { 
-			  public void actionPerformed(ActionEvent e) { 
-				  String ip = JOptionPane.showInputDialog("Enter IP address");
-				
-					TcpConnect(ip);
-				
-			   
-			  } 
-			  
-			} );
-		JButton udpScan = new JButton("UDP Scan");
-		udpScan.addActionListener(new ActionListener() { 
-			  public void actionPerformed(ActionEvent e) { 
-				  String ip = JOptionPane.showInputDialog("Enter IP address");
-				  UdpScan(ip);
-			   
-			  } 
-			  
-			} );
-		jp.add(tcpSyn);
-		jp.add(tcpConnect);
-		jp.add(udpScan);
-		jf.add(jp);
-		jf.setVisible(true);
-	}
-}
+		jtxt.append( "\n"+("Port "+Integer.toString(port)+" is open"));
+		jtxt.append("\n"+("Ports open " + Integer.toString(open)));
+	
+}}

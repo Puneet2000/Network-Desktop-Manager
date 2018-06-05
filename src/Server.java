@@ -1,26 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 public class Server {
-	private JFrame jFrame=null,jf=null;
+	private JFrame jFrame=null;
 	private JDesktopPane desktop=null;
+	private static int port=5555;
 	ServerSocket sc=null;
 	 public static void main(String args[]){
-	        String port = JOptionPane.showInputDialog("Please enter listening port");
-	        new Server().ServerMainFrame();
-	        //new Server().initialize(Integer.parseInt(port));
+	        port = Integer.parseInt(JOptionPane.showInputDialog("Please enter listening port"));
+
+	        new Server().initialize(port);
 	    }
 
 	    public void initialize(int port){
 
 	        try {
 	            sc = new ServerSocket(port);
-	            drawGUI();
+	           drawGUI();
 	            while(true){
 	                Socket client = sc.accept();
 	                System.out.println("New client Connected to the server");
-	                new ClientHandler(client,desktop);
+	                new ClientHandler(client,desktop,port);
 	            }
 	        } catch (IOException ex) {
 	            ex.printStackTrace();
@@ -36,19 +39,6 @@ public class Server {
 	    	jFrame.setVisible(true);
 	    	
 	    }
-	    public void ServerMainFrame() {
-	    	jf = new JFrame("This is Server Window");
-	    	jf.setSize(1000,1000);
-	    	JTabbedPane jtp = new JTabbedPane();
-	    	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    	jtp.addTab("Control Desktop", null);
-	    	jtp.addTab("Port Scanner",null);
-	    	jtp.addTab("System Properties",null);
-	    	jtp.addTab("Running Process", null);
-	    	jtp.add("Desktop Locking", null);
-	    	jf.add(jtp);
-	    	jf.setVisible(true);
-	    	
-	    }
+	  
 
 }
