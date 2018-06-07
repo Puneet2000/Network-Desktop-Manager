@@ -1,4 +1,6 @@
 import java.net.*;
+import java.util.HashMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
@@ -20,10 +22,20 @@ public class ScreenRecorder extends Thread {
 	  try {
 		oos = new ObjectOutputStream(client.getOutputStream());
 		oos.writeObject(rec);
+		oos.reset();
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  try {
+		  HashMap<String,String> props = new GetSystemProperties().getProperties();
+		oos.writeObject(props);
+		oos.reset();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  
 	  
 	  while(Continue) {
 		  BufferedImage image = robot.createScreenCapture(rec);

@@ -12,6 +12,7 @@ public class ClientHandler extends Thread {
 	JDesktopPane desktop =null;
 	JFrame jf =null;
 	String clientIP;
+	   JTextArea properties;
 	int port =5555;
 	JInternalFrame iframe = new JInternalFrame("Client screen",true,true);
 	JPanel panel = new JPanel();
@@ -43,6 +44,21 @@ public class ClientHandler extends Thread {
             ex.printStackTrace();
         }
         
+        try{
+          @SuppressWarnings("unchecked")
+		HashMap<String,String> props  =(HashMap<String,String>) ois.readObject();
+          for (Map.Entry<String,String> p : props.entrySet()) {
+        	  properties.append("\n"+ p.getKey() + " : "+p.getValue());
+          }
+
+        }catch(IOException ex){
+
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+
+            ex.printStackTrace();
+        }
+        
         new ScreenReceiver(ois,panel);
         new CommandSender(client,panel,clientScreenDim);
 	}
@@ -66,7 +82,7 @@ public class ClientHandler extends Thread {
 	    	JTabbedPane jtp = new JTabbedPane();
 	    	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	jtp.addTab("Port Scanner",new PortScan());
-	    	jtp.addTab("System Properties",null);
+	    	jtp.addTab("System Properties",new SystemProperties());
 	    	jtp.addTab("Running Process", null);
 	    	jtp.add("Desktop Locking", null);
 	    	jf.add(jtp);
@@ -131,6 +147,19 @@ public class ClientHandler extends Thread {
 				add(udp);
 				add(Box.createVerticalStrut(20));
 				add(jtxt);
+		   }
+	   }
+	   
+	   private class SystemProperties extends JPanel{
+		   SystemProperties(){
+			   JScrollPane jsp = new JScrollPane(this,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			   properties = new JTextArea();
+			   properties.setMinimumSize(new Dimension(650,600));
+			   properties.setMaximumSize(new Dimension(650,600));
+			   properties.setAutoscrolls(true);
+			   super.add(properties);
+			   jsp.add(this);
+			 
 		   }
 	   }
 	   
