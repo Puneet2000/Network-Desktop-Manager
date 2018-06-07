@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.io.*;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 public class ClientHandler extends Thread {
 	Socket client =null;
 	JDesktopPane desktop =null;
@@ -131,5 +133,7 @@ public class ClientHandler extends Thread {
 				add(jtxt);
 		   }
 	   }
+	   
+	   
 
 }

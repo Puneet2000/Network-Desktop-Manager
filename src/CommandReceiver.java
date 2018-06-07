@@ -1,4 +1,6 @@
 import java.net.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -67,6 +69,7 @@ public class CommandReceiver extends Thread {
                     case -5:
                         robot.mouseMove(scanner.nextInt(), scanner.nextInt());
                     break;
+                  
                 }
             }
         } catch (IOException ex) {

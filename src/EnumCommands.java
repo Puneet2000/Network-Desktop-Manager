@@ -4,7 +4,10 @@ public enum EnumCommands {
     RELEASE_MOUSE(-2),
     PRESS_KEY(-3),
     RELEASE_KEY(-4),
-    MOVE_MOUSE(-5);
+    MOVE_MOUSE(-5),
+	SYSTEM_PROPERTIES(-6),
+	RUNNING_PROCESSES(-7);
+	
 
     private int abbrev;
 

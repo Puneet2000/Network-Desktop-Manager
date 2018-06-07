@@ -14,7 +14,6 @@ public class GetSystemProperties {
 	    String key = (String)keys.nextElement();
 	    String value = (String)prop.get(key);
 	    properties.put(key, value);
-	    System.out.println(key + ": " + value);
 	    
         }
 	    return properties;
