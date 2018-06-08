@@ -163,6 +163,13 @@ public class ClientHandler extends Thread {
 		   }
 	   }
 	   
+	   private class DesktopLock extends JPanel{
+		   
+		   public DesktopLock() {
+			   
+		   }
+	   }
+	   
 	   
 
 }

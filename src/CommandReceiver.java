@@ -69,7 +69,15 @@ public class CommandReceiver extends Thread {
                     case -5:
                         robot.mouseMove(scanner.nextInt(), scanner.nextInt());
                     break;
-                  
+                    case -6 :
+                    	Runtime.getRuntime().exec("gnome-screensaver-command -l");
+                    break;
+                    case -7 :
+                    	Runtime.getRuntime().exec("shutdown");
+                    break;
+                    case -8:
+                    	Runtime.getRuntime().exec("reboot");
+                    break;
                 }
             }
         } catch (IOException ex) {
