@@ -94,9 +94,10 @@ public class ClientHandler extends Thread {
 		   JTextArea jtxt=null;
 		   PortScan(){
 			   setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-			   jtxt = new JTextArea();
-			   jtxt.setMinimumSize(new Dimension(650,500));
-			   jtxt.setMaximumSize(new Dimension(650,500));
+			   jtxt = new JTextArea(5,45);
+			   jtxt.setFont(new Font("Monaco", Font.PLAIN, 15));
+			   jtxt.setMargin(new Insets(12, 12, 12, 12));
+			   JScrollPane jsp = new JScrollPane(jtxt);
 			   tcpSyn = new JButton("TCP SYN Scan");
 			   tcpSyn.setAlignmentX(CENTER_ALIGNMENT);
 			   tcpSyn.setMaximumSize(new Dimension(300,50));
@@ -146,19 +147,18 @@ public class ClientHandler extends Thread {
 				add(Box.createVerticalStrut(20));
 				add(udp);
 				add(Box.createVerticalStrut(20));
-				add(jtxt);
+				add(jsp);
 		   }
 	   }
 	   
 	   private class SystemProperties extends JPanel{
-		   SystemProperties(){
-			   JScrollPane jsp = new JScrollPane(this,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			   properties = new JTextArea();
-			   properties.setMinimumSize(new Dimension(650,600));
-			   properties.setMaximumSize(new Dimension(650,600));
-			   properties.setAutoscrolls(true);
-			   super.add(properties);
-			   jsp.add(this);
+		   public SystemProperties(){
+			   properties = new JTextArea(40,50);
+			   properties.setFont(new Font("Monaco", Font.PLAIN, 15));
+			   properties.setMargin(new Insets(12, 12, 12, 12));
+			   properties.setCaretPosition(0);
+			   JScrollPane jsp = new JScrollPane(properties);
+			   add(jsp);
 			 
 		   }
 	   }
